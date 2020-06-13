@@ -18,27 +18,17 @@ void ofApp::setup() {
 	}
 
 	int nPoints = 1280 * 3;
-	//for (int i = 0; i < nPoints; i++) {
-	//	float r = ofMap(i, 0, nPoints - 1, 0, 9.0f / 16.0f);
-	//	float angle = 1.0f * (float)i / (nPoints - 1) * PI * 2.0f;
-	//	points.emplace_back(r*cos(angle), r*sin(angle));
-	//}
-	//for (int i = points.size() - 1; i >= 0; i--) {
-	//	points.emplace_back(points[i].real, points[i].imag);
-	//}
-
-	//for (int i = 0; i < nPoints; i++) {
-	//	float x = ofMap(i, 0, nPoints - 1, -1, 1);
-	//	float y = 0.95f * 9.0f / 16.0f * sin((x + 1)*PI * 4);
-	//	points.emplace_back(x, y);
-	//}
-	//
-	//for (int i = points.size() - 1; i >= 0; i--) {
-	//	points.emplace_back(points[i].real, points[i].imag);
-	//}
+	for (int i = 0; i < nPoints; i++) {
+		float r = ofMap(i, 0, nPoints - 1, 0, 9.0f / 16.0f);
+		float angle = 5.0f * (float)i / (nPoints - 1) * PI * 2.0f;
+		points.emplace_back(r*cos(angle), r*sin(angle));
+	}
+	for (int i = points.size() - 1; i >= 0; i--) {
+		points.emplace_back(points[i].real, points[i].imag);
+	}
 
 	for (int i = 0; i < nCircles; i++) {
-		//circles[i].calcCoefficient(points);
+		circles[i].calcCoefficient(points);
 	}
 }
 
@@ -95,7 +85,7 @@ void ofApp::draw() {
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key) {
-	if (key == ' ') {
+	if (key == ' ' && !animating) {
 		for (int i = 0; i < nCircles; i++) {
 			circles[i].calcCoefficient(points);
 		}

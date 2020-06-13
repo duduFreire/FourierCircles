@@ -28,5 +28,5 @@ public:
 	int nCircles = 1000;
 	myCircle circles[1000];
 	float time = 0.0f;
-	bool animating = false;
+	bool animating = true;
 };
